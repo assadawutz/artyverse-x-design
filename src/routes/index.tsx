@@ -88,7 +88,7 @@ function Index() {
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">Design OS 3.0</p>
           <motion.h1
             initial={reducedMotion ? false : { y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ ...spring, delay: 0.1 }}
-            className="text-balance text-5xl font-extrabold leading-[0.95] sm:text-7xl lg:text-8xl"
+            className="text-balance font-extrabold leading-[0.95] text-[clamp(2.1rem,9.5vw,6.5rem)]"
           >
             Intelligence, <span className="text-neon">in motion.</span>
           </motion.h1>

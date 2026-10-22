@@ -51,14 +51,15 @@ function ChatPage() {
     if (!t || thinking) return;
     playTone("send", prefs.sound, prefs.volume);
     const userMsg = { id: uid(), role: "user" as const, text: t, at: Date.now() };
-    let sid = forceNew ? null : activeId;
-    setSessions((prev) => {
-      if (!sid || !prev.find((s) => s.id === sid)) {
-        sid = uid();
-        return [{ id: sid, title: titleFrom(t), messages: [userMsg], updatedAt: Date.now() }, ...prev];
-      }
-      return prev.map((s) => (s.id === sid ? { ...s, messages: [...s.messages, userMsg], updatedAt: Date.now() } : s));
-    });
+    const exists = !forceNew && activeId && sessions.some((s) => s.id === activeId);
+    let sid: string;
+    if (exists) {
+      sid = activeId!;
+      setSessions((prev) => prev.map((s) => (s.id === sid ? { ...s, messages: [...s.messages, userMsg], updatedAt: Date.now() } : s)));
+    } else {
+      sid = uid();
+      setSessions((prev) => [{ id: sid, title: titleFrom(t), messages: [userMsg], updatedAt: Date.now() }, ...prev]);
+    }
     setActiveId(sid);
     setInput("");
     setThinking(true);

@@ -30,7 +30,7 @@ const TEMPLATES = [
 ];
 
 function Templates() {
-  const [sel, setSel] = useState(TEMPLATES[0].id);
+  const [sel, setSel] = useState(TEMPLATES[0]!.id);
   const [copied, setCopied] = useState(false);
   const { prefs } = usePrefs();
   const t = TEMPLATES.find((x) => x.id === sel)!;
