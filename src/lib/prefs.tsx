@@ -87,6 +87,10 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
 
 export function usePrefs() {
   const c = useContext(PrefsCtx);
-  if (!c) throw new Error("usePrefs must be used inside PrefsProvider");
+  // Fallback instead of throwing: keeps pages (and HMR/error boundaries) from blanking
+  // if a consumer ever renders outside PrefsProvider.
+  if (!c) {
+    return { prefs: DEFAULT_PREFS, set: () => {}, reset: () => {}, reducedMotion: false, lowPower: false } as const;
+  }
   return c;
 }
