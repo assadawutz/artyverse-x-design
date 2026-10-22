@@ -93,7 +93,7 @@ function Studio() {
         g.beginPath();
         let sum = 0;
         for (let i = 0; i < data.length; i++) {
-          const v = (data[i] - 128) / 128;
+          const v = ((data[i] ?? 128) - 128) / 128;
           sum += v * v;
           const x = (i / (data.length - 1)) * w;
           const y = h / 2 + v * h * 0.45;

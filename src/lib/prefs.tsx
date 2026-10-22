@@ -74,9 +74,9 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const el = document.documentElement;
-    el.dataset.accent = prefs.accent;
-    el.dataset.motion = reducedMotion ? "reduced" : "full";
-    el.dataset.perf = lowPower ? "low" : "high";
+    el.dataset["accent"] = prefs.accent;
+    el.dataset["motion"] = reducedMotion ? "reduced" : "full";
+    el.dataset["perf"] = lowPower ? "low" : "high";
   }, [prefs.accent, reducedMotion, lowPower]);
 
   const set = useCallback(<K extends keyof Prefs>(k: K, v: Prefs[K]) => setPrefs((p) => ({ ...p, [k]: v })), []);

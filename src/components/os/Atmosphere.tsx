@@ -16,11 +16,11 @@ export function Atmosphere() {
         alt=""
         width={1920}
         height={1088}
-        style={still ? undefined : { y }}
+        style={{ ...(still ? {} : { y }) }}
         className="absolute inset-x-0 top-0 h-[115vh] w-full object-cover opacity-55"
       />
       {!lowPower && (
-        <motion.div style={still ? undefined : { y: y2 }} className="absolute inset-0">
+        <motion.div style={{ ...(still ? {} : { y: y2 }) }} className="absolute inset-0">
           <div className="absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-violet/25 blur-3xl" />
           <div className="absolute -right-32 top-1/2 h-[28rem] w-[28rem] rounded-full bg-cyan/15 blur-3xl" />
         </motion.div>
